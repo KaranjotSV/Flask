@@ -12,7 +12,7 @@ The repository contains a Flask application, with performs **CRUD** operations i
   6. Enter the cloned repository directory and execute `pip install -r requirements.txt`.
   7. Now, execute the following command: `python3 app.py` and it will point to the `localhost` with the port.
 
-### Input and Requests
+### Input and Request for different endpoints
 
   1. `/create` - **POST** request with data in **JSON** format, `{"id": "2", "name": "Simranpal", "lname": "Lubana", "major": "CSE", "year": "4th"}`, the `id` has to be unique, this would create a new document in MongoDB and a new record in MySQL, with the given parameters, and would return the `id` in **JSON** format.
   
