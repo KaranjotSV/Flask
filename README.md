@@ -1,6 +1,6 @@
 ## Flask
 
-The repository contains a Flask application, with performs **CRUD** operations in MongoDB and MySQL.
+The repository contains a Flask application, which performs **CRUD** operations in MongoDB and MySQL.
 
 ### Application Execution
 
