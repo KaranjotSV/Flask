@@ -14,4 +14,4 @@ The repository contains a Flask application, with performs **CRUD** operations i
 
 ### Input and Requests
 
-  1. `/create` - **POST** request with data in **JSON** format, `{"id": "2", "name": "Simranpal", "lname": "Lubana", "major": "CSE", "year": "4th"}`, the `id` has to be unique, this would create a new document in MongoDB and a new record in MySQL, with the given parameters
+  1. `/create` - **POST** request with data in **JSON** format, `{"id": "2", "name": "Simranpal", "lname": "Lubana", "major": "CSE", "year": "4th"}`, the `id` has to be unique, this would create a new document in MongoDB and a new record in MySQL, with the given parameters.
