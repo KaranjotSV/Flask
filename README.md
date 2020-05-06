@@ -12,7 +12,7 @@ The repository contains a Flask application, which performs **CRUD** operations 
   6. Enter the cloned repository's directory and execute `pip install -r requirements.txt`.
   7. Now, execute the following command: `python3 app.py` and it will point to the `localhost` with the port.
 
-### Input and Request for different endpoints
+### Endpoints
 
   1. `/` - **GET** request, this would return all the existing documents in **JSON** format.
   
