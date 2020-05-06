@@ -20,7 +20,6 @@ The repository contains a Flask application, which performs **CRUD** operations 
   
   3. `/update` - **PUT** request with data in **JSON** format, `{"id": "2", "name": "Karanjot", "lname": "Vilkhu"}`, which ever parameters to be updated are mentioned along with the `id` of the document, this would update an existing document in MongoDB having the mentioned `id`.
   
-  4. `/delete` - **DELETE** request with `id`, of the document to be deleted, in **JSON** format, `{"id": "2"}`, this would delete an existing document from MongoDB having the mentioned `id`.
+  4. `/delete` - **DELETE** request with `id` of the document, to be deleted, in **JSON** format, `{"id": "2"}`, this would delete an existing document from MongoDB having the mentioned `id`.
   
   5. `/detect_prime` - **POST** request with the `number`, to be detected, in **JSON** format, `{"number": "234123563"}`, this would return whether the given `number` is prime or not, in **JSON** format.
-  
