@@ -1,11 +1,6 @@
 from flask import Flask, request, jsonify
 from mongoengine import *
-from flask_sqlalchemy import *
-import MySQLdb
 import json
-
-project_dir = os.path.dirname(os.path.abspath('test'))
-database_file = 'mysql://vilkhu:root@localhost/{}'.format(os.path.join(project_dir, "test.db"))
 
 def checkPrime(n):
     if n == 2 or n == 3:
@@ -28,16 +23,6 @@ class StudentMongo(Document):
     Major = StringField(required = True, max_length=50)
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = database_file
-db = SQLAlchemy(app)
-
-# MySQL
-class StudentMySQL(db.Model):
-    ID = db.Column(db.String(80), unique=True, nullable=False, primary_key = True)
-    Name = db.Column(db.String(200), unique=False, nullable=False)
-    LastName = db.Column(db.String(200), unique=False, nullable=False)
-    Year = db.Column(db.String(20), unique=False, nullable=False)
-    Major = db.Column(db.String(100), unique=False, nullable=False)
 
 @app.route('/', methods = ['GET'])
 def get_document():
@@ -62,11 +47,8 @@ def create():
         if request.method == 'POST':
             JSON = request.json
             post_mongo = StudentMongo(ID = JSON['id'], Name = JSON['name'], LastName = JSON['lname'], Year = JSON['year'], Major = JSON['major'])
-            post_sql = StudentMySQL(ID = JSON['id'], Name = JSON['name'], LastName = JSON['lname'], Year = JSON['year'], Major = JSON['major'])
             ID = JSON['id']
             post_mongo.save()           # for Mongo
-            db.session.add(post_sql)    # for MySQL
-            db.session.commit()
             id_dict['id'] = ID
             return jsonify(id_dict)
 
@@ -83,7 +65,6 @@ def update():
         id = JSON['id']
         try:
             studentmongo = StudentMongo.objects(ID = id).get()
-            studentmysql = StudentMySQL.query.filter_by(ID = id)
             try:
                 name = JSON['name']
             except:
@@ -105,16 +86,8 @@ def update():
                 major = studentmongo.Major
 
             studentmongo.update(Name = name, LastName = lastname, Year = year, Major = major) # for Mongo
-
-            studentmysql.Name = name                                                          # for MySQL
-            studentmysql.LastName = lastname
-            studentmysql.Year = year
-            studentmysql.Major = major
-
-            db.session.commit()
-
-
-            return("Update Succesful")
+            
+	    return("Update Succesful")
         except DoesNotExist:
             return("ID not found")
 
@@ -126,10 +99,6 @@ def delete():
         try:
             studentmongo = StudentMongo.objects(ID = id).get() # for Mongo
             studentmongo.delete()
-
-            studentmysql = StudentMySQL.query.filter_by(ID = id) # for MySQL
-            db.session.delete(studentmysql)
-            db.session.commit()
 
             return("Document deleted")
         except DoesNotExist:
