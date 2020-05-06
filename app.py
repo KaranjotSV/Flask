@@ -86,8 +86,8 @@ def update():
                 major = studentmongo.Major
 
             studentmongo.update(Name = name, LastName = lastname, Year = year, Major = major) # for Mongo
-            
-	    return("Update Succesful")
+	
+            return("Update Succesful")
         except DoesNotExist:
             return("ID not found")
 
